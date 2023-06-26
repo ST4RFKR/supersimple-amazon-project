@@ -46,14 +46,40 @@ products.forEach((product) =>{
       Added
     </div>
 
-    <button class="add-to-cart-button button-primary">
+    <button data-product-id="${product.id}" class="add-to-cart-button button-primary js-add-to-cart">
       Add to Cart
     </button>
   </div>
     `;
+
+    // add-to-cart-button button-primary js-add-to-cart
     
 });
 
 document.querySelector('.js-products-grid').innerHTML = productHTML;
+
+document.querySelectorAll('.js-add-to-cart').forEach((button) =>{
+    button.addEventListener('click', (e) => {
+
+console.log('Add to card');
+const productId = button.dataset.productId;
+// Проверка на одинаковый товар и добавление в корзину 
+let matchingItem ;
+
+cart.forEach((item) =>{
+    if (productId == item.productId){
+        matchingItem = item;
+    }
+});
+    if (matchingItem){
+        matchingItem.quantity += 1;
+    } else {
+        cart.push({
+            productId : productId,
+            quantity : 1
+        });
+    }    
+ });
+});
 
 
