@@ -71,6 +71,7 @@ cart.forEach((item) =>{
         matchingItem = item;
     }
 });
+
     if (matchingItem){
         matchingItem.quantity += 1;
     } else {
@@ -78,7 +79,14 @@ cart.forEach((item) =>{
             productId : productId,
             quantity : 1
         });
-    }    
+    } 
+    let cartQuantity = 0;
+    cart.forEach((item) => {
+        cartQuantity = cartQuantity + item.quantity;
+    })
+    console.log(cartQuantity);
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+    
  });
 });
 
